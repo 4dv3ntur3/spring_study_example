@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+ 		http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- ctx2, ctx3도 import했으므로 이 파일 하나만 있으면 하나의 커다란 스프링 설정 파일이 될 수 있다 -->
+	<import resource="classpath:appCtx2.xml"/>
+	<import resource="classpath:appCtx3.xml"/>
+
+	<bean id="studentDao" class="ems.member.dao.StudentDao" ></bean>
+	
+	<!-- constructor-arg < 생성자에 참조변수  -->
+	<!-- 주입할 객채의 id -->
+	<bean id="registerService" class="ems.member.service.StudentRegisterService">
+		<constructor-arg ref="studentDao" ></constructor-arg>
+	</bean>
+	
+	<bean id="modifyService" class="ems.member.service.StudentModifyService">
+		<constructor-arg ref="studentDao" ></constructor-arg>
+	</bean>
+	
+	<bean id="deleteService" class="ems.member.service.StudentDeleteService">
+		<constructor-arg ref="studentDao" ></constructor-arg>
+	</bean>
+	
+	<bean id="selectService" class="ems.member.service.StudentSelectService">
+		<constructor-arg ref="studentDao" ></constructor-arg>
+	</bean>
+	
+	<bean id="allSelectService" class="ems.member.service.StudentAllSelectService">
+		<constructor-arg ref="studentDao" ></constructor-arg>
+	</bean>
+	
+</beans>
